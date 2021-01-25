@@ -1,0 +1,24 @@
+{% load visualizador_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album</title>
+</head>
+<body>
+    <h1>Pagina Album</h1>
+    {% for i in album %}
+        <p>{{i.nombre}}</p>
+        <p>{{i.estudio}}</p>
+        <p>{{i.ano_lanzamiento}}</p>
+        <p>{{i.no_pistas}}</p>
+        <img src="{{i.imagen.url}}" alt="imagen album">
+        {% with canciones=i.id|album_cancion %}
+            {% for j in canciones%}
+                <p>{{j.no_cancion}} {{j.nombre}}</p>
+            {% endfor %}
+        {% endwith %}
+    {% endfor %}
+</body>
+</html>

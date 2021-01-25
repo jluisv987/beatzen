@@ -1,0 +1,56 @@
+{% load visualizador_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/static/js/jquery.slim.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/js/bootstrap.bundle.min.js"></script>
+    <title>Resultados de la busqueda</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
+        <a class="navbar-brand" href="index.html"><img src="img/beat.png" alt=""></a>
+      </nav>
+      <br>
+      {% if busqueda %}
+        <div class="container">
+          {% for i in busqueda %}
+            {% with tipo=i|to_class_name %} 
+            {% if tipo == "Artista" %}
+              <div class="card">
+                  <div class="card-body">
+                      <h1>Artista</h1>
+                      <p><a href="{% url 'artista' i.id %}">{{i.nombre}}</a></p>
+                      <p>{{i.biografia}}</p>
+                  </div>
+              </div>
+              </br>
+              {% elif tipo == "Cancion" %}
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Canción</h1>
+                        <p><a href="{% url 'cancion' i.id %}">{{i.nombre}}</a></p>
+                        <p>{{i.album}}</p>
+                    </div>
+                  </div>
+                </br>
+                {% elif tipo == "Album" %}
+                  <div class="card">
+                    <div class="card-body">
+                        <h1>Albúm</h1>
+                        <p><a href="{% url 'album' i.id %}">{{i.nombre}}</a></p>
+                        <p>{{i.estudio}}</p>
+                    </div>
+                  </div>
+                  </br>
+                {% endif %}
+              {% endwith %}
+          {% endfor %}
+        </div>
+  {% else %}
+      <h1>No se encontraron resultados en la busqueda</h1>
+  {% endif %}
+</body>
+</html>

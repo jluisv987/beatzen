@@ -1,0 +1,99 @@
+{% load visualizador_tags %}
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="/static/js/jquery.slim.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <script type="text/javascript" src="/static/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/Album.css">
+    <style>
+        /* Ponemos un color de fondo y redondeamos las esquinas del track */
+.container::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+}
+/* Cambiamos el fondo cuando esté en active o hover */
+.container::-webkit-scrollbar-track:hover,
+.container::-webkit-scrollbar-track:active {
+background: #d4d4d4;
+}
+        .profile-head {
+    transform: translateY(5rem)
+}
+iframe{
+    overflow:hidden;
+    min-height: 600px;
+}
+.cover {
+    background-image: url("/static/imagenes/fondo4.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body {
+    background: #654ea3;
+    background: linear-gradient(to right, #e96443, #904e95);
+    min-height: 100vh
+}
+    </style>
+</head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+            <a class="navbar-brand" href="/"><img src="/static/imagenes/beat.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                        </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/buscar">Buscar</a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+        <div class="row py-5 px-4">
+            <div class="col-md-12 mx-auto">
+                <!-- Profile widget -->
+                <div class="fond">
+                </div>
+                <div class="cot">
+                    {% for i in album %}
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <div class="imgalbum">
+                             <img src="{{i.imagen.url}}" alt="imagen album" width="75%">
+                        </div>
+                        <div class="txts">
+                            <br>
+                            <h5 class="mb-0">{{i.nombre}}</h5>
+                            <br>
+                            <p>{{i.estudio}}</p>
+                            <p>Año de lanzamiento: {{i.ano_lanzamiento}}/p>
+                            <p>Numero de pistas: {{i.no_pistas}} pistas</p>
+                            <br>
+                            <p>Contenido del &Aacute;lbum:</p>  
+                        </div>
+                        <div class="canciones">
+                            {% with canciones=i.id|album_cancion %}     
+                            {% for j in canciones%}       
+                            <p class="font-italic mb-0">{{j.no_cancion}} <a href="{% url 'cancion' j.id %}" target="_blank">{{j.nombre}}</a></p>
+                            {% endfor %}
+                            {% endwith %}
+                            {% endfor %}
+                        </div>
+                        </br>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

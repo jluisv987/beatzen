@@ -1,0 +1,32 @@
+.fond{
+    background: url("../img/The_Killers.png");
+    width: 60%;
+    height: 50%;
+    margin: auto auto;
+}
+.ctex{
+    margin-left: 10px;
+    position: relative;
+    top: 65%;
+}
+.cot{
+    position: relative;
+    bottom: 11%;
+    width: 60%;
+    height: 90%;
+    margin: auto auto;
+
+}
+.imgalbum{
+    position: absolute;
+    margin-top: 30px;
+    left: 55%;
+}
+.txts{
+    position: relative;
+    left: 5%;
+}
+.canciones{
+    width: 50%;
+    margin-left: 80px;
+}
