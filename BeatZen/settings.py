@@ -16,7 +16,7 @@ SECRET_KEY = '^@iz)s(@!083p-qv+9b(prvxa6i9ximac6foro6%ws5^5@ya+$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://beatzen.herokuapp.com/']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
