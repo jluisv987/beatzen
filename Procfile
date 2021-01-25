@@ -1,1 +1,1 @@
-web:gunicorn beatzen.wsgi --log-file -
+web: gunicorn beatzen.wsgi
