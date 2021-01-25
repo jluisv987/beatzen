@@ -1,1 +1,1 @@
-web: gunicorn beatzen.wsgi
+web: gunicorn BeatZen.wsgi
