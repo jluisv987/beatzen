@@ -18,3 +18,15 @@ def album_cancion(id):
 @register.filter
 def tablatura_cancion(id):
     return Tablatura.objects.filter(cancion=id)
+
+@register.filter
+def invitado_cancion(id):
+    return Invitado.objects.filter(cancion=id)
+
+@register.filter
+def artista_cancion(id):
+    return Artista.objects.filter(cancion=id)
+
+@register.filter
+def musico_artista(id):
+    return Musico.objects.filter(artista=id)

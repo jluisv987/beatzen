@@ -76,7 +76,17 @@ body {
                     <h3 class="mb-0">Canción</h3>
                     </br>
                     <h5 class="mb-0">{{i.nombre}}</h5>
+                    <br>
+                    <h5 class="mb-0">Artista: {{i.artista}}</h5>
                     </br>
+                    {% with invitado=i.id|invitado_cancion %}
+                    {% if invitado %}            
+                    {% for k in invitado %}
+                    <h5 class="mb-0">Artista Invitado: {{k.musico}}</h5>
+                    </br>                   
+                    {% endfor %} 
+                    {% endif %}
+                    {% endwith %}
                     <p class="mb-0">Duración: </p>
                     <p class="mb-0">{{i.duracion}}</p>
                     <a href="{{i.url}}" type="button" class="btn btn-danger btn-lg">Ver en Youtube</a>

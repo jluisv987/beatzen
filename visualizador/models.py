@@ -18,9 +18,17 @@ class Album(models.Model):
     ano_lanzamiento=models.DateField()
     no_pistas=models.IntegerField()
     imagen = models.ImageField(null=True,blank=True)
+    artista = models.ForeignKey(Artista,null=True,on_delete=models.SET_NULL)
     def __str__(self):
         return self.nombre
-    artista = models.ManyToManyField(Artista)
+
+class Musico(models.Model):
+    nombre = models.CharField(max_length=50)
+    instrumento = models.CharField(max_length=500)
+    ciudad = models.CharField(max_length=50)
+    artista = models.ForeignKey(Artista,null=True,on_delete=models.SET_NULL)
+    def __str__(self):
+        return self.nombre
 
 class Cancion(models.Model):
     class Meta:
@@ -29,15 +37,9 @@ class Cancion(models.Model):
     duracion = models.CharField(max_length=10)
     no_cancion = models.IntegerField()
     url = models.CharField(max_length=100)
-    #artista = models.ForeignKey(Artista,null=True,on_delete=models.SET_NULL)
+    #musico = models.ForeignKey(Musico,null=True,on_delete=models.SET_NULL)
+    artista = models.ForeignKey(Artista,null=True,on_delete=models.SET_NULL)
     album = models.ForeignKey(Album,null=True,on_delete=models.SET_NULL)
-    def __str__(self):
-        return self.nombre
-
-class Musico(models.Model):
-    nombre = models.CharField(max_length=50)
-    instrumento = models.CharField(max_length=500)
-    ciudad = models.CharField(max_length=50)
     def __str__(self):
         return self.nombre
 
@@ -49,17 +51,8 @@ class Tablatura(models.Model):
     email_traductor = models.CharField(max_length=50)
     imagen = models.ImageField(null=True,blank=True)
     cancion = models.ForeignKey(Cancion,null=True,on_delete=models.SET_NULL)
-
-    def __str__(self):
+def __str__(self):
         return self.cancion_instrumento
-
-
-class Integrante(models.Model):
-    artista_musico = models.CharField(max_length=50)
-    artista = models.ForeignKey(Artista,null=True,on_delete=models.SET_NULL)
-    musico = models.ForeignKey(Musico,null=True,on_delete=models.SET_NULL)
-    def __str__(self):
-        return self.artista_musico
 
 class Invitado(models.Model):
     musico_cancion = models.CharField(max_length=50)

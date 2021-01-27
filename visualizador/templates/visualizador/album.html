@@ -64,18 +64,19 @@ body {
         <div class="row py-5 px-4">
             <div class="col-md-12 mx-auto">
                 <!-- Profile widget -->
+                            {% for i in album %}
                 <div class="fond">
                 </div>
                 <div class="cot">
-                    {% for i in album %}
                     <div class="p-4 rounded shadow-sm bg-light">
                         <div class="imgalbum">
-                             <img src="{{i.imagen.url}}" alt="imagen album" width="75%">
+                            <img src="{{i.imagen.url}}" alt="imagen album" width="75%">
                         </div>
                         <div class="txts">
                             <br>
                             <h5 class="mb-0">{{i.nombre}}</h5>
                             <br>
+                            <p>Artista: {{i.artista}}</p>
                             <p>{{i.estudio}}</p>
                             <p>Año de lanzamiento: {{i.ano_lanzamiento}}</p>
                             <p>Numero de pistas: {{i.no_pistas}} pistas</p>
@@ -85,7 +86,7 @@ body {
                         <div class="canciones">
                             {% with canciones=i.id|album_cancion %}     
                             {% for j in canciones%}       
-                            <p class="font-italic mb-0">{{j.no_cancion}} <a href="{% url 'cancion' j.id %}" target="_blank">{{j.nombre}}</a></p>
+                            <p class="font-italic mb-0">{{j.no_cancion}}.- <a href="{% url 'cancion' j.id %}" target="_blank">{{j.nombre}}</a></p>
                             {% endfor %}
                             {% endwith %}
                             {% endfor %}

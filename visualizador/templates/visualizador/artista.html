@@ -80,15 +80,21 @@ body {
                     <div class="p-4 rounded shadow-sm bg-light">
                     <h5 class="mb-0">Acerca de la banda</h5>
                     <p class="mb-0">{{i.ciudad}}</p>
-                    
+                    <br>
                     <p class="font-italic mb-0">Biografia:</p>
                     <p class="font-italic mb-0">
-                       {{i.biografia}}
+                    {{i.biografia}}
                     </p>
-                    
                     </br>
+                    {% with integrantes=i.id|musico_artista %}        
+                    <h5 class="mb-0">Integrantes de la banda:</h5>
+                  </br> 
+                    {% for k in integrantes %}
+                    <h6 class="mb-0">{{k.nombre}}</h6>                  
+                    {% endfor %} 
+                    {% endwith %}
                     
-                    <p class="font-italic mb-0">
+                    <br class="font-italic mb-0">
                     {% with albums=i.id|artista_album %}
                         Albumes:
                         
@@ -96,23 +102,20 @@ body {
                         {% for j in albums %}
                           <a href="{% url 'album' j.id %}">{{j.nombre}}</a>
                         </br>
-                        {% endfor %}
+                        {% endfor %} 
                     {% endwith %}
-
-                        
-                    </p>
+            {% endfor %}
+                    <br>
                     <p>Sitio Web: <a href={{i.pagina}}>Click aqui</a></p>   
                 </div>
                     
-                    </br>
-                                         
+                    </br>                 
                     </div>
                     
                 </div>
             </div>
             
         </div>
-        {% endfor %}
     </div>
 </body>
 </html>
